@@ -1,0 +1,31 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build TypeScript",
+			"type": "shell",
+			"command": "pnpm run build",
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Watch TypeScript",
+			"type": "shell",
+			"command": "pnpm run dev",
+			"isBackground": true,
+			"problemMatcher": [
+				"$tsc-watch"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Start Server",
+			"type": "shell",
+			"command": "pnpm start",
+			"isBackground": true,
+			"group": "test"
+		}
+	]
+}

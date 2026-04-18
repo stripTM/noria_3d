@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noria 3D</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Noria 3D</h1>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#acerca">Acerca</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio">
+            <h2>Bienvenido a Noria 3D</h2>
+            <p>Este es un proyecto web desarrollado con TypeScript, HTML y CSS.</p>
+            <button id="demo-button">Demostración</button>
+        </section>
+
+        <section id="content">
+            <div id="app-container">
+                <canvas id="noria-canvas" width="500" height="500"></canvas>
+                <!-- Contenido dinámico generado por TypeScript -->
+            </div>
+            <img src="boceto.jpg" alt="Boceto"/>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Noria 3D. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Scripts TypeScript compilados -->
+    <script type="module" src="/dist/main.js"></script>
+</body>
+</html>
