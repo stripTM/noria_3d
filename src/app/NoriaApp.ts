@@ -61,7 +61,7 @@ export class NoriaApp {
             const dy = e.clientY - lastY;
             lastX = e.clientX;
             lastY = e.clientY;
-            this.camera.azimuth   += dx * sensitivity;
+            this.camera.azimuth   -= dx * sensitivity;
             this.camera.elevation  = Math.max(-halfPi, Math.min(halfPi, this.camera.elevation + dy * sensitivity));
         });
 
