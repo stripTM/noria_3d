@@ -6,7 +6,7 @@ import type { Obj3D } from '../domain/types.js';
 const GY = 4.0;  // nivel del suelo (Y positivo = abajo en pantalla)
 const GS = 2.0;  // apertura de las patas (X y Z desde el centro)
 
-export function createTriangles(): Obj3D[] {
+export function createSoportes(): Obj3D[] {
     const vertices = new Float32Array([
            0,    0,    0,  // 0 cubo central (eje de la rueda)
         -GS,  GY,  -GS,  // 1 pata delantera-izquierda

@@ -16,9 +16,9 @@ noria_3d/
 │   ├── domain/
 │   │   └── types.ts            # Tipos e interfaces del dominio
 │   ├── geometry/
-│   │   ├── cube.ts             # Geometría del cubo
-│   │   ├── pyramid.ts          # Geometría de la pirámide
-│   │   └── triangle.ts         # Geometría del triángulo
+│   │   ├── wheel.ts            # Rueda de la noria (aro + radios)
+│   │   ├── cabins.ts           # Cabinas que cuelgan del aro
+│   │   └── supports.ts         # Estructura de soportes
 │   ├── math/
 │   │   └── transform.ts        # Transformaciones matemáticas
 │   └── rendering/
@@ -121,10 +121,34 @@ El proyecto está configurado con:
 
 ### `src/main.ts`
 
-- Clase principal `NoriaApp`
-- Manejo de eventos del DOM
-- Sistema de renderizado dinámico
-- Utilidades helper
+- Punto de entrada de la aplicación
+- Instancia `NoriaApp`
+
+### `src/app/NoriaApp.ts`
+
+- Clase principal de la aplicación
+- Manejo de eventos del DOM (arrastre de cámara)
+- Inicialización de geometrías y animación
+
+### `src/geometry/`
+
+- **`wheel.ts`** — Aro circular con radios y eje central; rota una vuelta completa
+- **`cabins.ts`** — 8 cabinas (cajas) enganchadas al aro; contra-rotan para mantenerse erectas
+- **`supports.ts`** — Estructura estática de 4 patas en X ancladas al suelo
+
+### `src/animation/Animator.ts`
+
+- Bucle de animación con `requestAnimationFrame`
+- Gestión de rotación propia y rotación heredada del padre
+
+### `src/math/transform.ts`
+
+- Transformaciones de rotación y proyección de perspectiva
+- Soporte de cámara configurable (azimut y elevación)
+
+### `src/rendering/CanvasRenderer.ts`
+
+- Renderizado de líneas con variación de grosor por profundidad
 
 ### `public/index.html`
 

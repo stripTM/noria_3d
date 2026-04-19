@@ -6,7 +6,7 @@ const N = 8;    // segmentos del aro
 const R = 1.8;  // radio de la rueda
 const W = 0.18; // semiprofundidad del aro (eje X)
 
-export function createCube(): Obj3D {
+export function createRueda(): Obj3D {
     const nv = N * 2 + 2; // aro delantero + aro trasero + 2 puntos de cubo
     const vertices = new Float32Array(nv * 3);
 

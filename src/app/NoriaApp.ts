@@ -1,6 +1,6 @@
-import { createCube } from '../geometry/cube.js';
-import { createPyramids } from '../geometry/pyramid.js';
-import { createTriangles } from '../geometry/triangle.js';
+import { createWheel } from '../geometry/wheel.js';
+import { createCabins } from '../geometry/cabins.js';
+import { createSupports } from '../geometry/supports.js';
 import { CanvasRenderer } from '../rendering/CanvasRenderer.js';
 import { Animator } from '../animation/Animator.js';
 import type { Camera } from '../domain/types.js';
@@ -24,10 +24,10 @@ export class NoriaApp {
     }
 
     private render(): void {
-        const cube = createCube();
-        const pyramids = createPyramids(0);
-        const triangles = createTriangles();
-        const objects = [cube, ...pyramids, ...triangles];
+        const wheel = createWheel();
+        const cabins = createCabins(0);
+        const supports = createSupports();
+        const objects = [wheel, ...cabins, ...supports];
         const canvas = this.container.querySelector('canvas')!;
         this.animator.start(objects, canvas, this.renderer, this.camera);
         console.log("Aplicación NoriaApp inicializada.");

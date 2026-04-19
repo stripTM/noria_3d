@@ -28,7 +28,7 @@ const indices = new Uint16Array([
     0, 4,  1, 5,  2, 6,  3, 7,  // aristas verticales
 ]);
 
-export function createPyramids(wheelIndex: number): Obj3D[] {
+export function createCabins(wheelIndex: number): Obj3D[] {
     return Array.from({ length: N }, (_, k) => {
         const a = (2 * Math.PI * k) / N;
         return {
