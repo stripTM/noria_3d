@@ -1,11 +1,12 @@
-import type { Obj3D } from '../domain/types.js';
+import type { Camera, Obj3D } from '../domain/types.js';
 
 export function transform(
     angle: number,
     obj: Obj3D,
     canvas: HTMLCanvasElement,
     parentAngle?: number,
-    parentAxis?: 'x' | 'y' | 'z'
+    parentAxis?: 'x' | 'y' | 'z',
+    camera?: Camera
 ): void {
     const cos = Math.cos(angle);
     const sin = Math.sin(angle);
@@ -61,9 +62,9 @@ export function transform(
             }
         }
 
-        // 4. Transformación de vista: cámara elevada y 30° a la derecha
-        const viewY = -Math.PI / 3;
-        const viewX = Math.PI / 30;
+        // 4. Transformación de vista: cámara configurable
+        const viewY = camera ? camera.azimuth   : -Math.PI / 3;
+        const viewX = camera ? camera.elevation :  Math.PI / 30;
         const vyC = Math.cos(viewY), vyS = Math.sin(viewY);
         const vx1 =  fx * vyC + fz * vyS;
         const vy1 =  fy;

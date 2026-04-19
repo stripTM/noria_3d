@@ -127,6 +127,11 @@ button:active {
     border-radius: 12px;
     box-shadow: var(--shadow);
     background: transparent;
+    cursor: grab;
+}
+
+#noria-canvas:active {
+    cursor: grabbing;
 }
 
 /* Footer */

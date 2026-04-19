@@ -8,3 +8,8 @@ export interface Obj3D {
     parentIndex?: number;
     offset?: [number, number, number];
 }
+
+export interface Camera {
+    azimuth: number;
+    elevation: number;
+}
