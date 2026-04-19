@@ -6,17 +6,37 @@ Un proyecto web moderno desarrollado con **TypeScript**, **HTML** y **CSS**.
 
 ```text
 noria_3d/
-├── src/              # Código fuente TypeScript
-│   └── main.ts       # Archivo principal de la aplicación
-├── public/           # Archivos estáticos
-│   ├── index.html    # Página principal HTML
-│   └── styles.css    # Estilos CSS
-├── dist/             # Archivos compilados (generados automáticamente)
-├── .github/          # Configuración de GitHub
+├── src/                        # Código fuente TypeScript
+│   ├── main.ts                 # Punto de entrada de la aplicación
+│   ├── polygon.ts              # Lógica de polígonos
+│   ├── animation/
+│   │   └── Animator.ts         # Sistema de animación
+│   ├── app/
+│   │   └── NoriaApp.ts         # Clase principal de la aplicación
+│   ├── domain/
+│   │   └── types.ts            # Tipos e interfaces del dominio
+│   ├── geometry/
+│   │   ├── cube.ts             # Geometría del cubo
+│   │   ├── pyramid.ts          # Geometría de la pirámide
+│   │   └── triangle.ts         # Geometría del triángulo
+│   ├── math/
+│   │   └── transform.ts        # Transformaciones matemáticas
+│   └── rendering/
+│       └── CanvasRenderer.ts   # Renderizado en canvas
+├── public/                     # Archivos estáticos
+│   ├── index.html              # Página principal HTML
+│   ├── styles.css              # Estilos CSS
+│   └── boceto.jpg              # Imagen de referencia
+├── dist/                       # Archivos compilados (generados automáticamente)
+├── .github/                    # Configuración de GitHub
 │   └── copilot-instructions.md
-├── package.json      # Dependencias y scripts
-├── tsconfig.json     # Configuración de TypeScript
-└── README.md         # Este archivo
+├── .vscode/
+│   └── tasks.json              # Tareas de VS Code
+├── .gitignore
+├── package.json                # Dependencias y scripts
+├── pnpm-lock.yaml              # Lockfile de pnpm
+├── tsconfig.json               # Configuración de TypeScript
+└── README.md                   # Este archivo
 ```
 
 ## 🚀 Instalación y Configuración
