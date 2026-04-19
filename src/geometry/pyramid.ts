@@ -1,10 +1,10 @@
 import type { Obj3D } from '../domain/types.js';
 
 const FRONT_VERTICES: [number, number, number][] = [
-    [-1, -1, 1],
-    [ 1, -1, 1],
-    [ 1,  1, 1],
-    [-1,  1, 1],
+    [0, -1, -1],
+    [0, -1,  1],
+    [0,  1, -1],
+    [0,  1,  1],
 ];
 
 export function createPyramids(cubeIndex: number): Obj3D[] {
