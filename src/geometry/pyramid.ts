@@ -1,35 +1,45 @@
 import type { Obj3D } from '../domain/types.js';
 
-const FRONT_VERTICES: [number, number, number][] = [
-    [0, -1, -1],
-    [0, -1,  1],
-    [0,  1, -1],
-    [0,  1,  1],
-];
+// Cabinas de la noria: cajas rectangulares que cuelgan del aro.
+// La contra-rotación (endAngle = -2π) cancela la rotación de la rueda,
+// por lo que las cabinas permanecen erguidas como góndolas reales.
+const N = 8;      // número de cabinas (debe coincidir con cube.ts)
+const R = 1.8;    // radio de la rueda (debe coincidir con cube.ts)
+const hw = 0.18;  // semiancho X
+const top = 0.05; // offset superior Y desde el punto de enganche
+const bot = 0.55; // offset inferior Y
+const hd = 0.13;  // semiprofundidad Z
 
-export function createPyramids(cubeIndex: number): Obj3D[] {
-    const s = 1 / 3;
-    const indices = new Uint16Array([
-        0, 1, 1, 2, 2, 3, 3, 0, // Base
-        0, 4, 1, 4, 2, 4, 3, 4  // Aristas laterales al ápice
-    ]);
-    // Geometría local compartida: ápice en el origen, base paralela al plano XZ hacia abajo (+Y)
-    const localVertices = new Float32Array([
-         s, 2 * s, -s,  // 0 base
-        -s, 2 * s, -s,  // 1 base
-        -s, 2 * s,  s,  // 2 base
-         s, 2 * s,  s,  // 3 base
-         0, 0,      0   // 4 ápice = pivote
-    ]);
+// Vértices locales compartidos por todas las cabinas
+const localVertices = new Float32Array([
+    -hw, top, -hd,  // 0 superior-frontal-izquierda
+     hw, top, -hd,  // 1 superior-frontal-derecha
+     hw, top,  hd,  // 2 superior-trasera-derecha
+    -hw, top,  hd,  // 3 superior-trasera-izquierda
+    -hw, bot, -hd,  // 4 inferior-frontal-izquierda
+     hw, bot, -hd,  // 5 inferior-frontal-derecha
+     hw, bot,  hd,  // 6 inferior-trasera-derecha
+    -hw, bot,  hd,  // 7 inferior-trasera-izquierda
+]);
 
-    return FRONT_VERTICES.map(([cx, cy, cz]) => ({
-        vertices: localVertices,
-        indices,
-        rotationAxis: 'x' as const,
-        endAngle: -Math.PI * 2,
-        projected: new Float32Array(5 * 2),
-        depths: new Float32Array(5),
-        parentIndex: cubeIndex,
-        offset: [cx, cy, cz],
-    }));
+const indices = new Uint16Array([
+    0, 1,  1, 2,  2, 3,  3, 0,  // cara superior
+    4, 5,  5, 6,  6, 7,  7, 4,  // cara inferior
+    0, 4,  1, 5,  2, 6,  3, 7,  // aristas verticales
+]);
+
+export function createPyramids(wheelIndex: number): Obj3D[] {
+    return Array.from({ length: N }, (_, k) => {
+        const a = (2 * Math.PI * k) / N;
+        return {
+            vertices: localVertices,
+            indices,
+            rotationAxis: 'x' as const,
+            endAngle: -Math.PI * 2,
+            projected: new Float32Array(8 * 2),
+            depths: new Float32Array(8),
+            parentIndex: wheelIndex,
+            offset: [0, R * Math.sin(a), R * Math.cos(a)] as [number, number, number],
+        };
+    });
 }

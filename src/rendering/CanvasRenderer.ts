@@ -6,8 +6,10 @@ export class CanvasRenderer {
 
         objects.forEach((obj, objIdx) => {
             const { projected, indices, depths } = obj;
-            // Cubo (idx 0) verde; pirámides (idx 1-4) naranja; triángulos (idx > 4) blanco
-            const color = objIdx === 0 ? '#00ff00' : objIdx <= 4 ? '#ff6600' : '#ffffff';
+            // Rueda (idx 0): azul claro; cabinas (con parentIndex): naranja; soportes: gris
+            const color = objIdx === 0 ? '#4fc3f7'
+                : obj.parentIndex !== undefined ? '#ff9800'
+                : '#90a4ae';
 
             // Rango de profundidad del objeto para normalizar
             let minD = Infinity, maxD = -Infinity;

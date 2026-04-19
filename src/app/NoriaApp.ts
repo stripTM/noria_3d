@@ -34,11 +34,6 @@ export class NoriaApp {
     }
 
     private setupEventListeners(): void {
-        const demoButton = document.getElementById('demo-button');
-        if (demoButton) {
-            demoButton.addEventListener('click', () => this.render());
-        }
-
         const canvas = this.container.querySelector('canvas');
         if (!canvas) return;
 

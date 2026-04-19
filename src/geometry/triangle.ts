@@ -1,31 +1,34 @@
 import type { Obj3D } from '../domain/types.js';
 
-// Con viewY=-PI/2 la cámara mira a lo largo del eje X.
-// Las caras delantera y trasera visibles son el plano YZ a x=+1 y x=-1.
-// Ápice en el centro de cada cara (x=±1, y=0, z=0).
-// Base 1 unidad por debajo del cubo (y=+2 en canvas = abajo en pantalla).
-// Anchura de base = 1/3 del cubo → semiancho w=1/3 en eje Z.
-
-const w = 1 / 3;
-const baseY = 2; // y positivo = abajo en pantalla
-
-const indices = new Uint16Array([
-    0, 1, // ápice -> base izq
-    1, 2, // base
-    2, 0  // base der -> ápice
-]);
+// Estructura de soporte de la noria: cuatro patas en forma de X
+// que parten del cubo central (eje) y se anclan al suelo.
+// No rota (endAngle = 0).
+const GY = 4.0;  // nivel del suelo (Y positivo = abajo en pantalla)
+const GS = 2.0;  // apertura de las patas (X y Z desde el centro)
 
 export function createTriangles(): Obj3D[] {
-    return [1, -1].map((x) => ({
-        vertices: new Float32Array([
-             x,     0,  0, // 0 ápice — centro de la cara
-             x, baseY, -w, // 1 base izquierda
-             x, baseY,  w, // 2 base derecha
-        ]),
+    const vertices = new Float32Array([
+           0,    0,    0,  // 0 cubo central (eje de la rueda)
+        -GS,  GY,  -GS,  // 1 pata delantera-izquierda
+         GS,  GY,  -GS,  // 2 pata delantera-derecha
+        -GS,  GY,   GS,  // 3 pata trasera-izquierda
+         GS,  GY,   GS,  // 4 pata trasera-derecha
+    ]);
+
+    const indices = new Uint16Array([
+        0, 1,  0, 2,  0, 3,  0, 4,  // patas desde el cubo
+        1, 2,                         // barra delantera del suelo
+        3, 4,                         // barra trasera del suelo
+        1, 3,                         // barra izquierda del suelo
+        2, 4,                         // barra derecha del suelo
+    ]);
+
+    return [{
+        vertices,
         indices,
         rotationAxis: 'x' as const,
         endAngle: 0,
-        projected: new Float32Array(3 * 2),
-        depths: new Float32Array(3),
-    }));
+        projected: new Float32Array(5 * 2),
+        depths: new Float32Array(5),
+    }];
 }
