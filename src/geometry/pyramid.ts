@@ -28,6 +28,7 @@ export function createPyramids(cubeIndex: number): Obj3D[] {
         rotationAxis: 'x' as const,
         endAngle: -Math.PI * 2,
         projected: new Float32Array(5 * 2),
+        depths: new Float32Array(5),
         parentIndex: cubeIndex,
         offset: [cx, cy, cz],
     }));

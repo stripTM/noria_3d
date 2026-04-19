@@ -22,5 +22,6 @@ export function createCube(): Obj3D {
         rotationAxis: 'x',
         endAngle: Math.PI * 2,
         projected: new Float32Array(vertices.length / 3 * 2),
+        depths: new Float32Array(vertices.length / 3),
     };
 }

@@ -78,5 +78,6 @@ export function transform(
         const pIdx = (i / 3) * 2;
         projected[pIdx]     = vxf * scale + canvas.width  / 2;
         projected[pIdx + 1] = vyf * scale + canvas.height / 2;
+        obj.depths[i / 3]   = vzf + cameraDist;
     }
 }
