@@ -21,6 +21,13 @@
 			"group": "build"
 		},
 		{
+			"label": "Start Dev",
+			"type": "shell",
+			"command": "pnpm dev",
+			"isBackground": true,
+			"group": "build"
+		},
+		{
 			"label": "Start Server",
 			"type": "shell",
 			"command": "pnpm start",
