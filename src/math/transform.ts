@@ -62,8 +62,8 @@ export function transform(
         }
 
         // 4. Transformación de vista: cámara elevada y 30° a la derecha
-        const viewY = -Math.PI / 2;
-        const viewX = 0;
+        const viewY = -Math.PI / 3;
+        const viewX = Math.PI / 30;
         const vyC = Math.cos(viewY), vyS = Math.sin(viewY);
         const vx1 =  fx * vyC + fz * vyS;
         const vy1 =  fy;
