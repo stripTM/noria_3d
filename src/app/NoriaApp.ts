@@ -23,13 +23,29 @@ export class NoriaApp {
         this.render();
     }
 
+    private fitCanvas(canvas: HTMLCanvasElement): void {
+        const dpr = window.devicePixelRatio || 1;
+        const w = Math.round(canvas.clientWidth  * dpr);
+        const h = Math.round(canvas.clientHeight * dpr);
+        if (canvas.width !== w || canvas.height !== h) {
+            canvas.width  = w;
+            canvas.height = h;
+        }
+    }
+
     private render(): void {
         const wheel = createWheel();
         const cabins = createCabins(0);
         const supports = createSupports();
         const objects = [wheel, ...cabins, ...supports];
         const canvas = this.container.querySelector('canvas')!;
+
+        this.fitCanvas(canvas);
         this.animator.start(objects, canvas, this.renderer, this.camera);
+
+        const ro = new ResizeObserver(() => { this.fitCanvas(canvas); });
+        ro.observe(canvas);
+
         console.log("Aplicación NoriaApp inicializada.");
     }
 

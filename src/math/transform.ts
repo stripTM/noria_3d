@@ -13,7 +13,7 @@ export function transform(
     const pCos = parentAngle !== undefined ? Math.cos(parentAngle) : 0;
     const pSin = parentAngle !== undefined ? Math.sin(parentAngle) : 0;
 
-    const focalLength = 400;
+    const focalLength = canvas.height * 0.8;
     const cameraDist = 5;
     const { vertices, projected, rotationAxis, offset } = obj;
     const [ox, oy, oz] = offset ?? [0, 0, 0];
