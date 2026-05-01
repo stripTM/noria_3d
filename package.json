@@ -4,7 +4,7 @@
   "description": "Proyecto web con TypeScript, HTML y CSS",
   "main": "dist/main.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && cp public/index.html public/styles.css public/favicon.svg public/favicon.ico dist/ && sed -i 's|src=\"/dist/main.js\"|src=\"main.js\"|' dist/index.html",
     "dev": "concurrently -n tsc,server -c cyan,green \"tsc --watch\" \"pnpm start\"",
     "start": "node -e \"const fs=require('fs'),http=require('http'),path=require('path'),url=require('url');const mimeTypes={'html':'text/html','js':'application/javascript','css':'text/css','json':'application/json'};http.createServer((req,res)=>{let pathname=url.parse(req.url).pathname;if(pathname==='/'){pathname='/public/index.html';}else if(pathname.startsWith('/public/')){pathname=pathname;}else if(pathname.startsWith('/dist/')){pathname=pathname;}else{pathname='/public'+pathname;}const filePath=path.join(__dirname,pathname);fs.readFile(filePath,(err,data)=>{if(err){res.writeHead(404);res.end('404 Not Found');return;}const ext=path.extname(filePath).slice(1);const mimeType=mimeTypes[ext]||'text/plain';res.writeHead(200,{'Content-Type':mimeType});res.end(data);});}).listen(3000,()=>console.log('Server running at http://localhost:3000'));\"",
     "clean": "rm -rf dist/*"
